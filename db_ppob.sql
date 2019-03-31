@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2019 at 10:31 PM
+-- Generation Time: Apr 01, 2019 at 12:17 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -87,7 +87,8 @@ CREATE TABLE `pelanggan` (
 INSERT INTO `pelanggan` (`id_pelanggan`, `no_meter`, `nama`, `alamat`, `email`, `username`, `password`, `id_tarif`) VALUES
 (2, 1212, 'Rauf', 'HAHA', 'as@as.as', 'uuu', 'uuu', 7),
 (3, 19216801, 'Faruq Ahmad', 'Jl. Danau Gidung B7J9 Sulfat Malang', 'farug@gmail.com', 'faruq', 'faruq', 8),
-(4, 123123, 'Hasan', 'Jl. Ahmad Yani Kota Malang', 'hasan@gmail.com', 'hasan', 'hasan', 9);
+(4, 123123, 'Hasan', 'Jl. Ahmad Yani Kota Malang', 'hasan@gmail.com', 'hasan', 'hasan', 9),
+(6, 1, '1', '1', '12@a.s', '1', '1', 11);
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,8 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_tagihan`, `tanggal`, `bulan_bayar
 (14, 16, '2019-03-31', 3, '111.PNG', 1, 1722, 1),
 (15, 17, '2019-03-31', 3, '64.PNG', 0, 102188, 1),
 (16, 21, '2019-03-31', 3, '10.PNG', 1, 3400, 1),
-(17, 22, '2019-03-31', 3, '13.PNG', 1, 3399, 1);
+(17, 22, '2019-03-31', 3, '13.PNG', 1, 3399, 1),
+(18, 20, '2019-04-01', 4, '16.PNG', 1, 3400, 1);
 
 -- --------------------------------------------------------
 
@@ -139,7 +141,7 @@ INSERT INTO `penggunaan` (`id_penggunaan`, `id_pelanggan`, `tahun`, `bulan`, `me
 (21, 4, 2019, 7, 1212, 100000),
 (23, 3, 2018, 6, 1, 1),
 (24, 3, 2018, 6, 1, 1),
-(25, 3, 2018, 1, 12, 11);
+(26, 3, 2017, 12, 999, 10000);
 
 -- --------------------------------------------------------
 
@@ -163,9 +165,10 @@ INSERT INTO `tagihan` (`id_tagihan`, `id_penggunaan`, `jumlah_meter`, `status`) 
 (17, 20, 98788, 3),
 (18, 21, 98788, 0),
 (19, 22, 110, 0),
-(20, 23, 0, 0),
+(20, 23, 0, 1),
 (21, 24, 0, 1),
-(22, 25, -1, 1);
+(22, 25, -1, 1),
+(23, 26, 9001, 0);
 
 -- --------------------------------------------------------
 
@@ -247,43 +250,43 @@ ALTER TABLE `tarif`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
-  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `penggunaan`
 --
 ALTER TABLE `penggunaan`
-  MODIFY `id_penggunaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_penggunaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id_tagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_tagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tarif`
 --
 ALTER TABLE `tarif`
-  MODIFY `id_tarif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_tarif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -299,14 +302,14 @@ ALTER TABLE `admin`
 -- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_tagihan`) REFERENCES `tagihan` (`id_tagihan`),
-  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`);
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_tagihan`) REFERENCES `tagihan` (`id_tagihan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `penggunaan`
 --
 ALTER TABLE `penggunaan`
-  ADD CONSTRAINT `penggunaan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
+  ADD CONSTRAINT `penggunaan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
