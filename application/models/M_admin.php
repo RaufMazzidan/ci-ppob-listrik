@@ -21,7 +21,7 @@ class M_admin extends CI_Model {
 		$level = $this->input->post('level');
 
 		$object = array(
-			'nama' => $nama, 
+			'nama_admin' => $nama, 
 			'username' => $user, 
 			'password' => $pass, 
 			'id_level' => $level, 
@@ -45,7 +45,7 @@ class M_admin extends CI_Model {
 		$id = $this->input->post('u_id_admin');
 
 		$object = array(
-			'nama' => $nama, 
+			'nama_admin' => $nama, 
 			'username' => $user, 
 			'password' => $pass, 
 			'id_level' => $level, 

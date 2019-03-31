@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
 				$array = array(
 					'login' =>TRUE , 
 					'id_admin' => $data->id_admin,
-					'nama' => $data->nama,
+					'nama' => $data->nama_admin,
 					'username' => $data->username,
 					'level' => $data->level,
 				);

@@ -102,7 +102,7 @@
 							$i++ ?>
 							<tr>
 								<td><?=$i?></td>
-								<td><?=$c->nama?></td>
+								<td><?=$c->nama_admin?></td>
 								<td><?=$c->username?></td>
 								<td><?=$c->password?></td>
 								<td><?=$c->level?></td>
@@ -164,7 +164,7 @@
 			dataType:"json",
 			success:function(data) {
 				$("#id_admin").val(data.id_admin);
-				$("#nama").val(data.nama);
+				$("#nama").val(data.nama_admin);
 				$("#username").val(data.username);
 				$("#password").val(data.password);
 				$("#level").val(data.id_level);
