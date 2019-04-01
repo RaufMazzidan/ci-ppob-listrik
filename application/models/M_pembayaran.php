@@ -36,8 +36,7 @@ class M_pembayaran extends CI_Model {
 				'bulan_bayar'=>date('m'),
 				'total_bayar'=>($biaya_admin+($dt_tagihan->jumlah_meter+$tarif_perkwh->tarifperkwh)),
 				'status_bayar'=>'0',
-				'bukti'=>$this->upload->data('file_name'),
-				'id_admin'=> $this->session->userdata('id_admin'),
+				'bukti'=>$this->upload->data('file_name')
 			);
 			if ($this->db->insert('pembayaran',$data)) {
 			 	$object = array('status' => '2');

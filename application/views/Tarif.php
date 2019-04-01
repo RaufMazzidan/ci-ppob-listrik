@@ -1,48 +1,46 @@
 <div class="row">
 	<div class="col-md-6">
+		<!-- INPUTS -->
 		<div class="panel">
 			<div class="panel-heading">
-				<h3 class="panel-title">Tarif</h3>
+				<h3 class="panel-title">Create Tarif</h3>
 				<div class="right">
 					<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
 				</div>
 			</div>
 			<div class="panel-body">
-				<?php 
+				<?php  
 				if ($this->session->userdata('pesan') !== NULL) {
 					?>
 					<div class="alert alert-success alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<i class="fa fa-success"></i> <?=$this->session->userdata('pesan')?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<?=$this->session->userdata('pesan')?>
 					</div>
 					<?php
-				}
-				elseif($this->session->userdata('warn') !== NULL){
+				}elseif($this->session->userdata('warn') !== NULL){
 					?>
 					<div class="alert alert-warning alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<i class="fa fa-warning"></i> <?=$this->session->userdata('warn')?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<?=$this->session->userdata('warn')?>
 					</div>
 					<?php
-				}
-				else{
+				}else{
 
-				} ?>
+				}
+				?>
 				<form action="<?=base_url()?>tarif/create" method="POST">
-					<input type="text" class="form-control" placeholder="Daya" name="daya" required>
+					<input type="text" class="form-control" placeholder="Daya" name="daya">
 					<br>
-					<input type="text" class="form-control" placeholder="Harga Per-KWH" name="kwh" required>
+					<input type="text" class="form-control" placeholder="Tarif PerKWH" name="kwh">
 					<br>
-					<input type="submit" class="btn btn-primary pull-right" value="Submit">
+					<input type="submit" class="btn btn-primary pull-right" name="submit" value="Submit">			
 				</form>
 			</div>
 		</div>
+		<!-- END INPUTS -->
 	</div>
 	<div class="col-md-6">
+		<!-- BASIC TABLE -->
 		<div class="panel">
 			<div class="panel-heading">
 				<h3 class="panel-title">Daftar Tarif</h3>
@@ -51,58 +49,59 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<?php 
-				if ($this->session->userdata('pesan_del') !== NULL) {
+				<?php  
+				if ($this->session->userdata('pesan_tab') !== NULL) {
 					?>
 					<div class="alert alert-success alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<i class="fa fa-success"></i> <?=$this->session->userdata('pesan_del')?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<?=$this->session->userdata('pesan_tab')?>
 					</div>
 					<?php
-				}
-				elseif($this->session->userdata('warn_del') !== NULL){
+				}elseif($this->session->userdata('warn_tab') !== NULL){
 					?>
 					<div class="alert alert-warning alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<i class="fa fa-warning"></i> <?=$this->session->userdata('warn_del')?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<<?=$this->session->userdata('warn_tab')?>
 					</div>
 					<?php
-				}
-				else{
+				}else{
 
-				} ?>
+				}
+				?>
 				<table class="table">
 					<thead>
-						<tr> 
+						<tr>
 							<th>#</th>
 							<th>Daya</th>
-							<th>Harga Per-KWH</th>
+							<th>Tarif PerKWH</th>
 							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php $i = 0;
+						<?php 
+						$i = 0;
 						foreach ($content as $c) {
-							$i++ ?>
+							$i++;
+							?>
 							<tr>
 								<td><?=$i?></td>
 								<td><?=$c->daya?></td>
-								<td>Rp. <?= number_format($c->tarifperkwh)?></td>
-								<td class="text-center"><a href="#edit" class="btn btn-primary" onclick="edit(<?=$c->id_tarif?>)" data-toggle="modal"><i class="lnr lnr-magic-wand"></i></a>&nbsp;<a href="<?=base_url()?>tarif/delete/<?=$c->id_tarif?>" class="btn btn-danger"><i class="lnr lnr-trash"></i></a></td>
+								<td>Rp.<?=number_format($c->tarifperkwh)?></td>
+								<td class="text-center">
+									<a href="#edit" data-toggle="modal" onclick="edit(<?=$c->id_tarif?>)" class="btn btn-primary"><i class="lnr lnr-magic-wand"></i></a>
+									&nbsp;
+									<a href="<?=base_url()?>tarif/delete/<?=$c->id_tarif?>" class="btn btn-danger"><i class="lnr lnr-trash"></i></a>
+								</td>
 							</tr>
-							<?php } ?>
+							<?php }?>
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<!-- END BASIC TABLE -->
 		</div>
 	</div>
 </div>
-
 <div class="modal fade" id="edit">
 	<div class="modal-dialog">
 		<div class="modal-content">

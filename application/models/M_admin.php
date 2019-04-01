@@ -8,11 +8,12 @@ class M_admin extends CI_Model {
 		$user = $this->input->post('username');
 		$pass = $this->input->post('password');
 
-		return $this->db->join('level', 'level.id_level = admin.id_level')
+		return $this->db->join('level', 'level.id_level=admin.id_level')
 						->where('username', $user)
 						->where('password', $pass)
 						->get('admin');
 	}
+
 	public function create()
 	{
 		$nama = $this->input->post('nama');
@@ -24,13 +25,13 @@ class M_admin extends CI_Model {
 			'nama_admin' => $nama, 
 			'username' => $user, 
 			'password' => $pass, 
-			'id_level' => $level, 
+			'id_level' => $level
 		);
 		return $this->db->insert('admin', $object);
 	}
 	public function show_all()
 	{
-		return $this->db->join('level', 'level.id_level = admin.id_level')->get('admin')->result();
+		return $this->db->join('level', 'level.id_level=admin.id_level')->get('admin')->result();
 	}
 	public function get_data($a)
 	{
@@ -48,10 +49,9 @@ class M_admin extends CI_Model {
 			'nama_admin' => $nama, 
 			'username' => $user, 
 			'password' => $pass, 
-			'id_level' => $level, 
+			'id_level' => $level
 		);
-
-		return $this->db->where('id_admin',$id)->update('admin', $object);
+		return $this->db->where('id_admin', $id)->update('admin', $object);
 	}
 	public function delete($a)
 	{
@@ -60,5 +60,5 @@ class M_admin extends CI_Model {
 
 }
 
-/* End of file M_Admin.php */
-/* Location: ./application/models/M_Admin.php */
+/* End of file M_admin.php */
+/* Location: ./application/models/M_admin.php */

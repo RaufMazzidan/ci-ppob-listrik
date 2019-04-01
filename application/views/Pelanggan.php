@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-4">
 		<div class="panel">
 			<div class="panel-heading">
 				<h3 class="panel-title">Pelanggan</h3>
@@ -33,39 +33,30 @@
 
 				} ?>
 				<form action="<?=base_url()?>pelanggan/create" method="POST">
-
-					<div class="row">
-						<div class="col-md-6">
-							<input type="text" class="form-control" placeholder="Nomor Meter" name="meter" required>
-							<br>
-							<input type="text" class="form-control" placeholder="Nama Lengkap" name="nama" required>
-							<br>
-							<input type="text" class="form-control" placeholder="Alamat" name="alamat" required>
-							<br>
-							<input type="email" class="form-control" placeholder="Email" name="email" required>
-							<br>	
-						</div>
-						<div class="col-md-6">
-							<input type="text" class="form-control" placeholder="Username" name="username" required>
-							<br>
-							<input type="password" class="form-control" placeholder="Password" name="password" required>
-							<br>
-							<select name="tarif" class="form-control required">
-								<option></option>
-								<?php foreach ($tarif as $l): ?>
-									<option value="<?=$l->id_tarif?>"><?=$l->daya?></option>	
-								<?php endforeach ?>
-
-							</select>
-							<br>
-							<input type="submit" class="btn btn-primary pull-right" value="Submit">
-						</div>
-					</div>
+					<input type="text" class="form-control" placeholder="Nama Lengkap" name="nama" required>
+					<br>
+					<input type="text" class="form-control" placeholder="Nomor Meter" name="meter" required>
+					<br>
+					<input type="text" class="form-control" placeholder="Alamat" name="alamat" required>
+					<br>
+					<input type="text" class="form-control" placeholder="Username" name="username" required>
+					<br>
+					<input type="password" class="form-control" placeholder="Password" name="password" required>
+					<br>
+					<select name="tarif" class="form-control">
+						<option></option>
+						<?php foreach ($tarif as $l): ?>
+						<option value="<?=$l->id_tarif?>"><?=$l->daya?></option>	
+						<?php endforeach ?>
+						
+					</select>
+					<br>
+					<input type="submit" class="btn btn-primary pull-right" value="Submit">
 				</form>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-12">
+	<div class="col-md-8">
 		<div class="panel">
 			<div class="panel-heading">
 				<h3 class="panel-title">Daftar Pelanggan</h3>
@@ -75,23 +66,23 @@
 			</div>
 			<div class="panel-body">
 				<?php 
-				if ($this->session->userdata('pesan_del') !== NULL) {
+				if ($this->session->userdata('pesan_tab') !== NULL) {
 					?>
 					<div class="alert alert-success alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<i class="fa fa-success"></i> <?=$this->session->userdata('pesan_del')?>
+						<i class="fa fa-success"></i> <?=$this->session->userdata('pesan_tab')?>
 					</div>
 					<?php
 				}
-				elseif($this->session->userdata('warn_del') !== NULL){
+				elseif($this->session->userdata('warn_tab') !== NULL){
 					?>
 					<div class="alert alert-warning alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<i class="fa fa-warning"></i> <?=$this->session->userdata('warn_del')?>
+						<i class="fa fa-warning"></i> <?=$this->session->userdata('warn_tab')?>
 					</div>
 					<?php
 				}
@@ -103,9 +94,8 @@
 						<tr> 
 							<th>#</th>
 							<th>Nama</th>
-							<th>No Meter</th>
+							<th>Nomor Meter</th>
 							<th>Alamat</th>
-							<th>Email</th>
 							<th>Username</th>
 							<th>Password</th>
 							<th>Daya</th>
@@ -121,11 +111,12 @@
 								<td><?=$c->nama?></td>
 								<td><?=$c->no_meter?></td>
 								<td><?=$c->alamat?></td>
-								<td><?=$c->email?></td>
 								<td><?=$c->username?></td>
 								<td><?=$c->password?></td>
 								<td><?=$c->daya?></td>
-								<td class="text-center"><a href="#edit" class="btn btn-primary" onclick="edit(<?=$c->id_pelanggan?>)" data-toggle="modal"><i class="lnr lnr-magic-wand"></i></a>&nbsp;<a href="<?=base_url()?>pelanggan/delete/<?=$c->id_pelanggan?>" class="btn btn-danger"><i class="lnr lnr-trash"></i></a></td>
+								<td class="text-center"><a href="#edit" class="btn btn-primary" onclick="edit(<?=$c->id_pelanggan?>)" data-toggle="modal"><i class="lnr lnr-magic-wand"></i></a>
+									&nbsp;
+								<a href="<?=base_url()?>pelanggan/delete/<?=$c->id_pelanggan?>" class="btn btn-danger"><i class="lnr lnr-trash"></i></a></td>
 							</tr>
 							<?php } ?>
 						</tbody>
@@ -150,32 +141,22 @@
 				<div class="modal-body">
 
 					<input type="hidden" name="u_id_pelanggan" id="id_pelanggan">
-					<div class="row">
-						<div class="col-md-6">
-							<input type="text" id="meter" class="form-control" placeholder="Nomor Meter" name="u_meter" required>
-							<br>
-							<input type="text" id="nama" class="form-control" placeholder="Nama Lengkap" name="u_nama" required>
-							<br>
-							<input type="text" id="alamat" class="form-control" placeholder="Alamat" name="u_alamat" required>
-							<br>
-							<input type="email" id="email" class="form-control" placeholder="Email" name="u_email" required>
-							<br>	
-						</div>
-						<div class="col-md-6">
-							<input type="text" id="username" class="form-control" placeholder="Username" name="u_username" required>
-							<br>
-							<input type="password" id="password" class="form-control" placeholder="Password" name="u_password" required>
-							<br>
-							<select name="u_tarif" id="tarif" class="form-control required">
-								<option></option>
-								<?php foreach ($tarif as $l): ?>
-									<option value="<?=$l->id_tarif?>"><?=$l->daya?></option>	
-								<?php endforeach ?>
-								
-							</select>
-							<br>
-						</div>
-					</div>
+					<input type="text" id="nama" class="form-control" name="u_nama" required>
+					<br>
+					<input type="text" id="meter" class="form-control" name="u_meter" required>
+					<br>
+					<input type="text" id="alamat" class="form-control" name="u_alamat" required>
+					<br>
+					<input type="text" id="username" class="form-control" name="u_username" required>
+					<br>
+					<input type="password" id="password" class="form-control" name="u_password" required>
+					<br>
+					<select name="u_tarif" class="form-control" id="tarif">
+						<?php foreach ($tarif as $l): ?>
+						<option value="<?=$l->id_tarif?>"><?=$l->daya?></option>	
+						<?php endforeach ?>
+						
+					</select>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -195,9 +176,8 @@
 			success:function(data) {
 				$("#id_pelanggan").val(data.id_pelanggan);
 				$("#nama").val(data.nama);
-				$("#alamat").val(data.alamat);
 				$("#meter").val(data.no_meter);
-				$("#email").val(data.email);
+				$("#alamat").val(data.alamat);
 				$("#username").val(data.username);
 				$("#password").val(data.password);
 				$("#tarif").val(data.id_tarif);

@@ -1,46 +1,44 @@
 <div class="row">
 	<div class="col-md-6">
+		<!-- INPUTS -->
 		<div class="panel">
 			<div class="panel-heading">
-				<h3 class="panel-title">Level</h3>
+				<h3 class="panel-title">Create Level</h3>
 				<div class="right">
 					<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
 				</div>
 			</div>
 			<div class="panel-body">
-				<?php 
+				<?php  
 				if ($this->session->userdata('pesan') !== NULL) {
 					?>
 					<div class="alert alert-success alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<i class="fa fa-success"></i> <?=$this->session->userdata('pesan')?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<?=$this->session->userdata('pesan')?>
 					</div>
 					<?php
-				}
-				elseif($this->session->userdata('warn') !== NULL){
+				}elseif($this->session->userdata('warn') !== NULL){
 					?>
 					<div class="alert alert-warning alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<i class="fa fa-warning"></i> <?=$this->session->userdata('warn')?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<?=$this->session->userdata('warn')?>
 					</div>
 					<?php
-				}
-				else{
+				}else{
 
-				} ?>
+				}
+				?>
 				<form action="<?=base_url()?>level/create" method="POST">
-					<input type="text" class="form-control" placeholder="Jabatan" name="level" required>
+					<input type="text" class="form-control" placeholder="Level" name="level">
 					<br>
-					<input type="submit" class="btn btn-primary pull-right" value="Submit">
+					<input type="submit" class="btn btn-primary pull-right" name="submit" value="Submit">			
 				</form>
 			</div>
 		</div>
+		<!-- END INPUTS -->
 	</div>
 	<div class="col-md-6">
+		<!-- BASIC TABLE -->
 		<div class="panel">
 			<div class="panel-heading">
 				<h3 class="panel-title">Daftar Level</h3>
@@ -49,56 +47,57 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<?php 
-				if ($this->session->userdata('pesan_del') !== NULL) {
+				<?php  
+				if ($this->session->userdata('pesan_tab') !== NULL) {
 					?>
 					<div class="alert alert-success alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<i class="fa fa-success"></i> <?=$this->session->userdata('pesan_del')?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<?=$this->session->userdata('pesan_tab')?>
 					</div>
 					<?php
-				}
-				elseif($this->session->userdata('warn_del') !== NULL){
+				}elseif($this->session->userdata('warn_tab') !== NULL){
 					?>
 					<div class="alert alert-warning alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<i class="fa fa-warning"></i> <?=$this->session->userdata('warn_del')?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<?=$this->session->userdata('warn_tab')?>
 					</div>
 					<?php
-				}
-				else{
+				}else{
 
-				} ?>
+				}
+				?>
 				<table class="table">
 					<thead>
-						<tr> 
+						<tr>
 							<th>#</th>
-							<th>Jabatan</th>
+							<th>Level</th>
 							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php $i = 0;
+						<?php 
+						$i = 0;
 						foreach ($content as $c) {
-							$i++ ?>
+							$i++;
+							?>
 							<tr>
 								<td><?=$i?></td>
 								<td><?=$c->level?></td>
-								<td class="text-center"><a href="#edit" class="btn btn-primary" onclick="edit(<?=$c->id_level?>)" data-toggle="modal"><i class="lnr lnr-magic-wand"></i></a>&nbsp;<a href="<?=base_url()?>level/delete/<?=$c->id_level?>" class="btn btn-danger"><i class="lnr lnr-trash"></i></a></td>
+								<td class="text-center">
+									<a href="#edit" data-toggle="modal" onclick="edit(<?=$c->id_level?>)" class="btn btn-primary"><i class="lnr lnr-magic-wand"></i></a>
+									&nbsp;
+									<a href="<?=base_url()?>level/delete/<?=$c->id_level?>" class="btn btn-danger"><i class="lnr lnr-trash"></i></a>
+								</td>
 							</tr>
-							<?php } ?>
+							<?php }?>
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<!-- END BASIC TABLE -->
 		</div>
 	</div>
 </div>
-
 <div class="modal fade" id="edit">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -107,7 +106,7 @@
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title">Edit Level</h4>
+				<h4 class="modal-title">Edit level</h4>
 			</div>
 			<form action="<?=base_url('level/edit')?>" method="post">
 				<div class="modal-body">
@@ -132,7 +131,7 @@
 			dataType:"json",
 			success:function(data) {
 				$("#id_level").val(data.id_level);
-				$("#level").val(data.level);
+				$("#daya").val(data.daya);
 			}
 
 		});

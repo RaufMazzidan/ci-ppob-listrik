@@ -62,30 +62,30 @@
 			</div>
 			<div class="panel-body">
 				<?php 
-				if ($this->session->userdata('pesan_del') !== NULL) {
+				if ($this->session->userdata('pesan_tab') !== NULL) {
 					?>
 					<div class="alert alert-success alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<i class="fa fa-success"></i> <?=$this->session->userdata('pesan_del')?>
+						<i class="fa fa-success"></i> <?=$this->session->userdata('pesan_tab')?>
 					</div>
 					<?php
 				}
-				elseif($this->session->userdata('warn_del') !== NULL){
+				elseif($this->session->userdata('warn_tab') !== NULL){
 					?>
 					<div class="alert alert-warning alert-dismissible" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<i class="fa fa-warning"></i> <?=$this->session->userdata('warn_del')?>
+						<i class="fa fa-warning"></i> <?=$this->session->userdata('warn_tab')?>
 					</div>
 					<?php
 				}
 				else{
 
 				} ?>
-				<table class="table">
+				<table class="table dataTable js-basic-example">
 					<thead>
 						<tr> 
 							<th>#</th>
@@ -139,8 +139,7 @@
 					<br>
 					<input type="password" id="password" class="form-control" name="u_password" required>
 					<br>
-					<select name="u_level" class="form-control required" id="level">
-						<option></option>
+					<select name="u_level" class="form-control" id="level">
 						<?php foreach ($level as $l): ?>
 						<option value="<?=$l->id_level?>"><?=$l->level?></option>	
 						<?php endforeach ?>

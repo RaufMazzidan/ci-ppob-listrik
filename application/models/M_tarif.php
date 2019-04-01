@@ -6,11 +6,11 @@ class M_tarif extends CI_Model {
 	public function create()
 	{
 		$daya = $this->input->post('daya');
-		$kwh = $this->input->post('kwh');
+		$tarif = $this->input->post('kwh');
 
 		$object = array(
 			'daya' => $daya, 
-			'tarifperkwh' => $kwh, 
+			'tarifperkwh' => $tarif
 		);
 		return $this->db->insert('tarif', $object);
 	}
@@ -25,14 +25,14 @@ class M_tarif extends CI_Model {
 	public function edit()
 	{
 		$daya = $this->input->post('u_daya');
-		$kwh = $this->input->post('u_kwh');
+		$tarif = $this->input->post('u_kwh');
 		$id = $this->input->post('u_id_tarif');
 
 		$object = array(
 			'daya' => $daya, 
-			'tarifperkwh' => $kwh, 
+			'tarifperkwh' => $tarif
 		);
-		return $this->db->where('id_tarif',$id)->update('tarif', $object);
+		return $this->db->where('id_tarif', $id)->update('tarif', $object);
 	}
 	public function delete($a)
 	{

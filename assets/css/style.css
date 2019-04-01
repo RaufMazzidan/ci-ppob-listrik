@@ -1,0 +1,26 @@
+.auth-box {
+    height: 550px;
+    margin: 0 auto;
+    background-color: #fff;
+    width: 70%;
+}
+.sign-up-box{
+    width: 70%;
+    padding: 30px;
+    height: auto;
+}
+.box-sign-up-admin{
+    width: 30%;
+    padding: 30px;
+    height: 550px;
+}
+.left-admin{
+    width: 100% !important!;
+}
+.auth-box .left-admin {
+    float: left;
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+    text-align: center;
+}

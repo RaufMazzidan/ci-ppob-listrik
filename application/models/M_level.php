@@ -8,7 +8,7 @@ class M_level extends CI_Model {
 		$level = $this->input->post('level');
 
 		$object = array(
-			'level' => $level,
+			'level' => $level, 
 		);
 		return $this->db->insert('level', $object);
 	}
@@ -26,9 +26,10 @@ class M_level extends CI_Model {
 		$id = $this->input->post('u_id_level');
 
 		$object = array(
-			'level' => $level,
+			'level' => $level, 
+			'levelperkwh' => $level
 		);
-		return $this->db->where('id_level',$id)->update('level', $object);
+		return $this->db->where('id_level', $id)->update('level', $object);
 	}
 	public function delete($a)
 	{

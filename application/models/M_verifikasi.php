@@ -15,7 +15,9 @@ class M_verifikasi extends CI_Model {
 	}
 	public function accept($a)
 	{
-		$object = array('status_bayar' => 1, );
+		$object = array('status_bayar' => 1,
+						'id_admin'=> $this->session->userdata('id_admin') 
+			);
 		
 		if($this->db->where('id_pembayaran', $a)->update('pembayaran', $object)){
 

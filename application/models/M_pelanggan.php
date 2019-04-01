@@ -18,15 +18,13 @@ class M_pelanggan extends CI_Model {
 		$nama = $this->input->post('nama');
 		$meter = $this->input->post('meter');
 		$alamat = $this->input->post('alamat');
-		$email = $this->input->post('email');
 		$user = $this->input->post('username');
 		$pass = $this->input->post('password');
 		$tarif = $this->input->post('tarif');
 
 		$object = array(
 			'nama' => $nama, 
-			'no_meter' => $meter, 
-			'email' => $email, 
+			'no_meter' => $meter,
 			'alamat' => $alamat, 
 			'username' => $user, 
 			'password' => $pass, 
@@ -51,12 +49,10 @@ class M_pelanggan extends CI_Model {
 		$id = $this->input->post('u_id_pelanggan');
 		$meter = $this->input->post('u_meter');
 		$alamat = $this->input->post('u_alamat');
-		$email = $this->input->post('u_email');
 
 		$object = array(
 			'nama' => $nama, 
 			'no_meter' => $meter, 
-			'email' => $email, 
 			'alamat' => $alamat, 
 			'username' => $user, 
 			'password' => $pass, 

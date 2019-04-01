@@ -13,7 +13,7 @@ class Laporan extends CI_Controller {
 	{
 		$data['content']= $this->m_laporan->show_all();
 		$data['page']= "laporan";
-		$this->load->view('pdf', $data);
+		$this->load->view('template', $data);
 	}
 	public function download()
 	{

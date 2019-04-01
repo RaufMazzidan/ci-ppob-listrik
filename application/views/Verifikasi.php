@@ -200,7 +200,7 @@
 </script>
 <script type="text/javascript">
 	function bukti(z) {
-		var img = "<img src='http://localhost/ukk_ppob/assets/img/bukti/"+z+"' style='width:100%'>"
+		var img = "<img id='bukti' src='http://localhost/ukk_ppob/assets/img/bukti/"+z+"' style='width:100%'>"
 		$('#bukti').replaceWith(img);
 		// console.log(img);
 	}
